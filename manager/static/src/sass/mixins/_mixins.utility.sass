@@ -1,0 +1,45 @@
+// Utility mixins.
+
+=fastTransition
+	transition: all 180ms ease-in-out
+
+
+// Grab background placeholder from unsplash.it. (usage: +unsplash(2400, true))
+=unsplash($size: 1200, $random: null)
+	@if($random)
+		background-image: url('https://unsplash.it/#{$size}/?random')
+	@else
+		background-image: url('https://unsplash.it/#{$size}')
+	background-repeat: no-repeat
+	background-position: center
+	background-size: cover
+
+// Create faded color over background image. (usage: +bgFade($dkGrey, .5))
+=bgFade($color,$opacity: .25)
+	background-color: transparentize($color, $opacity)
+	@if(lightness($color) < 50)
+		background-blend-mode: darken
+	@else
+		background-blend-mode: lighten
+
+
+
+// BEM Helpers
+=element($element)
+	@at-root 
+		#{&}__#{$element}
+			@content
+
+=modifier($modifier)
+	@at-root
+		#{&}--#{$modifier}
+			@content
+
+
+
+// Color functions
+@function changeColor($color, $percent)
+	@return scale-color($color, $lightness: $percent, $saturation: if($percent > 0, -($percent / 2), ($percent * 1.25)))
+	
+@function changeSat($color)
+	@return scale-color($color, $saturation: -65%)

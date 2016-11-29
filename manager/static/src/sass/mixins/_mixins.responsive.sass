@@ -1,0 +1,20 @@
+$small 		:   34em
+$medium 	: 	48em
+$large 		:	62em
+$xlarge 	: 	75em
+
+=small
+	@media only screen and (min-width: #{$small})
+		@content
+
+=medium
+	@media only screen and (min-width: #{$medium})
+		@content
+
+=large
+	@media only screen and (min-width: #{$large})
+		@content
+
+=xlarge
+	@media only screen and (min-width: #{$xlarge})
+		@content

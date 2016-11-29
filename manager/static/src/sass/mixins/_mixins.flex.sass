@@ -1,0 +1,23 @@
+// ## Flex Box mixins
+
+=flex($dir:null, $wrap:null)
+	display: flex
+	@if ($dir and $wrap)
+		flex-flow: $dir $wrap
+	@else
+	
+
+=col($cols, $shrink:null)
+	$colWidth 		: 	100% / $columns * $cols
+	@if ($shrink == shrink)
+		flex 			: 	0 0 $colWidth
+	@else
+		flex			: 	1 0 $colWidth
+	// Calc is still pretty experimental. Need to check browser compatability.
+	max-width 		: 	calc(#{$colWidth} - #{$gutter})
+
+=row
+	+flex(row)
+	+wrap
+	flex-shrink: 0
+	width: 100%

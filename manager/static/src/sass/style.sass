@@ -1,0 +1,24 @@
+// ## Imports
+
+@import variables/_config
+@import mixins/_mixins.utility
+@import mixins/_mixins.flex
+@import mixins/_mixins.buttons
+@import mixins/_mixins.responsive
+@import foundation
+
+
+// ## Globals		:	*, html, body
+
+*
+	box-sizing: border-box
+
+html,
+body
+	height: 100%
+
+body
+	min-height: 100%
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.004)
+
+	color: darken($flat-gray-4, 30%)

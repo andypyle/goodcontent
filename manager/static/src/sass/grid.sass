@@ -1,0 +1,23 @@
+// OPTIONAL GRID CLASSES
+.row
+	+flex(row)
+	+wrap
+	flex-shrink: 0
+	width: 100%
+	margin: 0 0 $gutter
+
+	&:last-of-type
+		margin: 0
+
+.col
+	+flex
+	+wrap
+	padding: $gutter
+	background-color: rgba(0,45,45,0.25)
+
+.col + .col
+	padding: $gutter $gutter $gutter 0
+
+@for $i from 1 through $columns
+	.col#{$i}
+		+col($i)
