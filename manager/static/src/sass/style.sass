@@ -18,7 +18,11 @@ body
 	height: 100%
 
 body
+	+flex(row, nowrap)
 	min-height: 100%
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.004)
 
 	color: darken($flat-gray-4, 30%)
+
+// Import sidebar
+@import sidebar

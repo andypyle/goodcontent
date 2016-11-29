@@ -1,9 +1,15 @@
+include ./mixins/mixin.myAvatar.pug
+
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet' href='//brick.a.ssl.fastly.net/Roboto:300,400,500,700')
-    link(rel='stylesheet', href='./styles/style.css')
-  body
-    block content
-    script(src='./js/index.js')
+	head
+		title= title
+		link(rel='stylesheet' href='//brick.a.ssl.fastly.net/Roboto:300,400,500,700')
+		link(rel='stylesheet', href='./styles/style.css')
+	body
+		aside.Sidebar
+			.LoggedInUser
+				+myAvatar
+				span.LoggedInUser__Welcome Welcome, Andy!
+		block content
+		script(src='./js/index.js')

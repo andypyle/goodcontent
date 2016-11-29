@@ -1,0 +1,20 @@
+.Sidebar
+	+flex(column, nowrap)
+	width: 20%
+	background: $flat-blue-4
+	color: $flat-gray-1
+
+.LoggedInUser
+	+flex(row, nowrap)
+	align-items: center
+	background: $flat-blue-2
+
+	+element('Avatar')
+		+flex
+		width: 60px
+		height: 60px
+	+element('Welcome')
+		flex: 1
+		text-align: center
+		font-weight: 300
+		font-size: 1.25rem
