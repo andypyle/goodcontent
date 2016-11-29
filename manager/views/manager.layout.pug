@@ -5,11 +5,116 @@ html
 	head
 		title= title
 		link(rel='stylesheet' href='//brick.a.ssl.fastly.net/Roboto:300,400,500,700')
+		link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
 		link(rel='stylesheet', href='./styles/style.css')
 	body
 		aside.Sidebar
-			.LoggedInUser
+			.Sidebar__Module.LoggedInUser
 				+myAvatar
-				span.LoggedInUser__Welcome Welcome, Andy!
+				.LoggedInUser__Info
+					span.LoggedInUser__Info__Welcome Welcome, Andy!
+					.LoggedInUser__Buttons
+						a.LoggedInUser__Buttons__Button.LoggedInUser__Buttons__Button--settings(href='#') Settings
+						a.LoggedInUser__Buttons__Button.LoggedInUser__Buttons__Button--logout(href='#') Log Out
+
+			.Sidebar__Module
+				nav.NavigationContainer
+					ul.Navigation
+						li.Navigation__Item
+							a.Navigation__Item__Link(href='#')
+								.Navigation__Item__Link__Left
+									i.fa.fa-home.fa-2x
+								.Navigation__Item__Link__Right
+									span Home
+						li.Navigation__Item
+							a.Navigation__Item__Link(href='#')
+								.Navigation__Item__Link__Left
+									i.fa.fa-file.fa-2x
+								.Navigation__Item__Link__Right
+									span Pages
+									i.fa.fa-angle-down
+
+							// SUBMENU
+							ul.Navigation__Item__Submenu
+								li.Navigation__Item__Submenu__Item
+									a.Navigation__Item__Submenu__Item__Link(href='#')
+										.Navigation__Item__Submenu__Item__Link__Left
+											i.fa.fa-home
+										.Navigation__Item__Submenu__Item__Link__Right
+											span Page 1
+								li.Navigation__Item__Submenu__Item
+									a.Navigation__Item__Submenu__Item__Link(href='#')
+										.Navigation__Item__Submenu__Item__Link__Left
+											i.fa.fa-info
+										.Navigation__Item__Submenu__Item__Link__Right
+											span Page 2
+								li.Navigation__Item__Submenu__Item
+									a.Navigation__Item__Submenu__Item__Link(href='#')
+										.Navigation__Item__Submenu__Item__Link__Left
+											i.fa.fa-music
+										.Navigation__Item__Submenu__Item__Link__Right
+											span Page 3
+								li.Navigation__Item__Submenu__Item
+									a.Navigation__Item__Submenu__Item__Link(href='#')
+										.Navigation__Item__Submenu__Item__Link__Left
+											i.fa.fa-picture-o
+										.Navigation__Item__Submenu__Item__Link__Right
+											span Page 4
+								li.Navigation__Item__Submenu__Item
+									a.Navigation__Item__Submenu__Item__Link(href='#')
+										.Navigation__Item__Submenu__Item__Link__Left
+											i.fa.fa-envelope-o
+										.Navigation__Item__Submenu__Item__Link__Right
+											span Page 5
+								li.Navigation__Item__Submenu__Item
+									a.Navigation__Item__Submenu__Item__Link(href='#')
+										.Navigation__Item__Submenu__Item__Link__Left
+											i.fa.fa-list-alt
+										.Navigation__Item__Submenu__Item__Link__Right
+											span Page 6
+
+						li.Navigation__Item
+							a.Navigation__Item__Link(href='#')
+								.Navigation__Item__Link__Left
+									i.fa.fa-list.fa-2x
+								.Navigation__Item__Link__Right
+									span Lists
+									i.fa.fa-angle-down
+
+							// SUBMENU
+							ul.Navigation__Item__Submenu
+								li.Navigation__Item__Submenu__Item
+									a.Navigation__Item__Submenu__Item__Link(href='#')
+										.Navigation__Item__Submenu__Item__Link__Left
+											i.fa.fa-book
+										.Navigation__Item__Submenu__Item__Link__Right
+											span List 1
+								li.Navigation__Item__Submenu__Item
+									a.Navigation__Item__Submenu__Item__Link(href='#')
+										.Navigation__Item__Submenu__Item__Link__Left
+											i.fa.fa-film
+										.Navigation__Item__Submenu__Item__Link__Right
+											span List 2
+								li.Navigation__Item__Submenu__Item
+									a.Navigation__Item__Submenu__Item__Link(href='#')
+										.Navigation__Item__Submenu__Item__Link__Left
+											i.fa.fa-picture-o
+										.Navigation__Item__Submenu__Item__Link__Right
+											span List 3
+
+						li.Navigation__Item
+							a.Navigation__Item__Link(href='#')
+								.Navigation__Item__Link__Left
+									i.fa.fa-users.fa-2x
+								.Navigation__Item__Link__Right
+									span Users
+						li.Navigation__Item
+							a.Navigation__Item__Link(href='#')
+								.Navigation__Item__Link__Left
+									i.fa.fa-cog.fa-2x
+								.Navigation__Item__Link__Right
+									span Config
+
+
 		block content
 		script(src='./js/index.js')

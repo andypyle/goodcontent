@@ -69,7 +69,10 @@ gulp.task('browsersync', ['nodemon'], function(){
 
 gulp.task('sass-site', () => {
 	gulp.src(entries.site.sass)
-    .pipe(sass({'outputStyle':'expanded'})
+    .pipe(sass({
+        'outputStyle':'expanded',
+        'includePaths':['./public/src/sass']
+    })
     .on('error', sass.logError))
     .pipe(prefix({
         browsers: [
@@ -92,7 +95,10 @@ gulp.task('sass-site', () => {
 
 gulp.task('sass-manager', () => {
 	gulp.src(entries.manager.sass)
-    .pipe(sass({'outputStyle':'expanded'})
+    .pipe(sass({
+        'outputStyle':'expanded',
+        'includePaths':['./manager/static/src/sass']
+    })
     .on('error', sass.logError))
     .pipe(prefix({
         browsers: [

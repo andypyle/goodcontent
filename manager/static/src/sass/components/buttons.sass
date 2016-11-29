@@ -1,0 +1,14 @@
+.Button
+	+flex
+	font-size: 1rem
+	font-weight: 400
+	padding: $gutter/2 $gutter
+	margin: $gutter/2
+	border-radius: 2px
+
+	+modifier('primary')
+		background: $flat-blue-1
+
+		&:hover
+			background: lighten($flat-blue-1, 5%)
+

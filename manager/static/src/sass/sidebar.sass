@@ -1,20 +1,63 @@
 .Sidebar
 	+flex(column, nowrap)
-	width: 20%
-	background: $flat-blue-4
+	width: 25%
+	background: $flat-blue-3
 	color: $flat-gray-1
+
+	+element('Module')
+		margin: $gutter
+
+		& + &
+			margin-top: 0
 
 .LoggedInUser
 	+flex(row, nowrap)
-	align-items: center
+	align-items: space-around
 	background: $flat-blue-2
 
 	+element('Avatar')
 		+flex
-		width: 60px
-		height: 60px
-	+element('Welcome')
+		width: 33%
+		height: 33%
+
+	+element('Info')
+		+flex(column, nowrap)
 		flex: 1
-		text-align: center
-		font-weight: 300
-		font-size: 1.25rem
+		align-items: stretch
+		justify-content: space-between
+
+		+element('Welcome')
+			+flex(row, nowrap)
+			flex: 1
+			justify-content: center
+			align-items: center
+			font-size: 1.25rem
+			font-weight: 300
+			padding: $gutter/2
+
+	+element('Buttons')
+		+flex(row, nowrap)
+		flex: 1
+		width: 100%
+
+		+element('Button')
+			+flex(row, nowrap)
+			flex: 1
+			justify-content: center
+			align-items: center
+			line-height: 1
+			padding: $gutter/2 $gutter/2
+			font-size: .95rem
+			font-weight: 300
+			color: $flat-gray-1
+
+			+modifier('settings')
+				background-color: $flat-green-4
+				&:hover
+					background-color: lighten($flat-green-4, 3%)
+
+			+modifier('logout')
+				background-color: $flat-orange-2
+				&:hover
+					background-color: lighten($flat-orange-2, 8%)
+	
