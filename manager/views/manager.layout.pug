@@ -86,23 +86,23 @@ html
 								li.Navigation__Item__Submenu__Item
 									a.Navigation__Item__Submenu__Item__Link(href='#')
 										.Navigation__Item__Submenu__Item__Link__Left
-											i.fa.fa-book
+											i.fa.fa-picture-o
 										.Navigation__Item__Submenu__Item__Link__Right
-											span List 1
+											span Photos
 											i.fa.fa-plus.AddListButton(data-id='1')
 								li.Navigation__Item__Submenu__Item
 									a.Navigation__Item__Submenu__Item__Link(href='#')
 										.Navigation__Item__Submenu__Item__Link__Left
-											i.fa.fa-film
+											i.fa.fa-list-alt
 										.Navigation__Item__Submenu__Item__Link__Right
-											span List 2
+											span Tour Dates
 											i.fa.fa-plus.AddListButton(data-id='2')
 								li.Navigation__Item__Submenu__Item
 									a.Navigation__Item__Submenu__Item__Link(href='#')
 										.Navigation__Item__Submenu__Item__Link__Left
-											i.fa.fa-picture-o
+											i.fa.fa-music
 										.Navigation__Item__Submenu__Item__Link__Right
-											span List 3
+											span Discography
 											i.fa.fa-plus.AddListButton(data-id='3')
 
 						li.Navigation__Item
@@ -129,8 +129,31 @@ html
 									i.fa.fa-cog.fa-2x
 								.Navigation__Item__Link__Right
 									span Config
+						li.Navigation__Item
+							a.Navigation__Item__Link(href='#')
+								.Navigation__Item__Link__Left
+									i.fa.fa-question.fa-2x
+								.Navigation__Item__Link__Right
+									span Help
 
+		main.Editor
+			header.Editor__Header
+				h1.Editor__Header__Heading
+					| Portfolio
+					i.fa.fa-angle-double-right
+					| New Project
+				.Editor__Header__Buttons
+					a.Editor__Header__Buttons__Button.Editor__Header__Buttons__Button--back(href='#') 
+						i.fa.fa-angle-left
+						| Back
+					a.Editor__Header__Buttons__Button.Editor__Header__Buttons__Button--save(href='#') 
+						i.fa.fa-floppy-o
+						| Save
+					a.Editor__Header__Buttons__Button.Editor__Header__Buttons__Button--delete(href='#') 
+						i.fa.fa-trash
+						| Delete
+			section.Editor__Main
+				block content
 
-
-		block content
+		
 		script(src='./js/index.js')
