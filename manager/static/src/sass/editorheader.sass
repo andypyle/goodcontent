@@ -26,36 +26,6 @@
 	+element('Buttons')
 		+flex(row, nowrap)
 		padding: $gutter
-		+element('Button')
-			+flex(row, nowrap)
-			align-items: center
-			justify-content: center
-			padding: $gutter/2 $gutter
-			font-size: 1rem
-			font-weight: 300
-			color: $flat-gray-1
-
-			+modifier('back')
-				background-color: $flat-green-4
-				&:hover
-					background-color: lighten($flat-green-4, 8%)
-
-			+modifier('save')
-				background-color: $flat-blue-2
-				&:hover
-					background-color: lighten($flat-blue-2, 8%)
-
-			+modifier('delete')
-				background-color: $flat-red-1
-				&:hover
-					background-color: lighten($flat-red-1, 8%)
-
-			& + &
-				margin-left: $gutter
-
-			i
-				padding-right: $gutter/2
-
 
 .Editor__Main
 	+flex(column, nowrap)

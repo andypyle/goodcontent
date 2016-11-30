@@ -1,14 +1,35 @@
 .Button
-	+flex
-	font-size: 1rem
-	font-weight: 400
+	+flex(row, nowrap)
+	align-items: center
+	justify-content: center
+	line-height: 1
 	padding: $gutter/2 $gutter
-	margin: $gutter/2
-	border-radius: 2px
+	font-size: 1rem
+	font-weight: 300
+	color: $flat-gray-1
 
-	+modifier('primary')
-		background: $flat-blue-1
-
+	+modifier('green')
+		background-color: $flat-green-4
 		&:hover
-			background: lighten($flat-blue-1, 5%)
+			background-color: lighten($flat-green-4, 8%)
 
+	+modifier('blue')
+		background-color: $flat-blue-2
+		&:hover
+			background-color: lighten($flat-blue-2, 8%)
+
+	+modifier('red')
+		background-color: $flat-red-1
+		&:hover
+			background-color: lighten($flat-red-1, 8%)
+
+	+modifier('orange')
+		background-color: $flat-orange-2
+		&:hover
+			background-color: lighten($flat-orange-2, 8%)
+
+	& + &
+		margin-left: $gutter
+
+	i
+		padding-right: $gutter/2

@@ -223,19 +223,64 @@ body {
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  font-size: 1rem;
-  font-weight: 400;
+  -webkit-flex-flow: row nowrap;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+     -moz-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  line-height: 1;
   padding: 0.5em 1em;
-  margin: 0.5em;
-  border-radius: 2px;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #ECF0F1;
 }
 
-.Button--primary {
-  background: #3498DB;
+.Button--green {
+  background-color: #27AE60;
 }
 
-.Button--primary:hover {
-  background: #4aa3df;
+.Button--green:hover {
+  background-color: #2ecf72;
+}
+
+.Button--blue {
+  background-color: #2980B9;
+}
+
+.Button--blue:hover {
+  background-color: #3896d3;
+}
+
+.Button--red {
+  background-color: #E74C3C;
+}
+
+.Button--red:hover {
+  background-color: #eb6d60;
+}
+
+.Button--orange {
+  background-color: #E67E22;
+}
+
+.Button--orange:hover {
+  background-color: #ea9347;
+}
+
+.Button + .Button {
+  margin-left: 1em;
+}
+
+.Button i {
+  padding-right: 0.5em;
 }
 
 .Sidebar {
@@ -356,52 +401,17 @@ body {
   width: 100%;
 }
 
-.LoggedInUser__Buttons__Button {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-flow: row nowrap;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
+.LoggedInUser__Buttons .Button {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
      -moz-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-     -moz-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-     -moz-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  line-height: 1;
-  padding: 0.5em 0.5em;
+  padding: 0.5em;
+  margin: 0;
   font-size: .9rem;
   font-weight: 300;
   text-transform: uppercase;
-  color: #ECF0F1;
-}
-
-.LoggedInUser__Buttons__Button--settings {
-  background-color: #27AE60;
-}
-
-.LoggedInUser__Buttons__Button--settings:hover {
-  background-color: #2aba67;
-}
-
-.LoggedInUser__Buttons__Button--logout {
-  background-color: #E67E22;
-}
-
-.LoggedInUser__Buttons__Button--logout:hover {
-  background-color: #ea9347;
 }
 
 .Editor {
@@ -479,63 +489,6 @@ body {
       -ms-flex-flow: row nowrap;
           flex-flow: row nowrap;
   padding: 1em;
-}
-
-.Editor__Header__Buttons__Button {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-flow: row nowrap;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-     -moz-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-     -moz-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 0.5em 1em;
-  font-size: 1rem;
-  font-weight: 300;
-  color: #ECF0F1;
-}
-
-.Editor__Header__Buttons__Button--back {
-  background-color: #27AE60;
-}
-
-.Editor__Header__Buttons__Button--back:hover {
-  background-color: #2ecf72;
-}
-
-.Editor__Header__Buttons__Button--save {
-  background-color: #2980B9;
-}
-
-.Editor__Header__Buttons__Button--save:hover {
-  background-color: #3896d3;
-}
-
-.Editor__Header__Buttons__Button--delete {
-  background-color: #E74C3C;
-}
-
-.Editor__Header__Buttons__Button--delete:hover {
-  background-color: #eb6d60;
-}
-
-.Editor__Header__Buttons__Button + .Editor__Header__Buttons__Button {
-  margin-left: 1em;
-}
-
-.Editor__Header__Buttons__Button i {
-  padding-right: 0.5em;
 }
 
 .Editor__Main {
