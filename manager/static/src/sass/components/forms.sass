@@ -1,0 +1,119 @@
+.Form
+	+flex(column, nowrap)
+	
+
+	+element('Row')
+		+flex(row, nowrap)
+		align-items: center
+		margin: $gutter/2
+
+		& + &
+			margin-top: 0
+
+
+	+element('InputGroup')
+		+flex(column, nowrap)
+		flex: 1
+		margin: $gutter/2
+		position: relative
+
+		+modifier('horizontal')
+			+flex(row, nowrap)
+			align-items: center
+			flex: 1
+			margin: $gutter/2
+
+
+	+element('Label')
+		font-size: 1.05rem
+		font-weight: 700
+		text-transform: uppercase
+		margin: $gutter/2
+
+
+	+element('InputText')
+		+flex
+		flex: 1
+		width: 100%
+		padding: $gutter/2
+		font-size: 1rem
+		font-weight: 300
+
+
+	+element('Select')
+		+flex
+		flex: 1
+		padding: $gutter/2
+		font-size: .98rem
+		font-weight: 300
+
+
+	+element('TextArea')
+		padding: $gutter/2
+		font-size: 1rem
+		font-weight: 300
+		line-height: 1.5
+		min-height: 10rem
+
+	+element('CheckBox')
+		display: none
+
+		& + .Form__CheckBox__Clickable
+			display: block
+			width: 24px
+			height: 24px
+			border: 4px solid $flat-blue-1
+			background-color: transparent
+			cursor: pointer
+
+			transition: background-color 225ms linear
+
+			&:after
+				display: block
+				content: '\f00c'
+				font-family: 'FontAwesome'
+				font-size: 1.4rem
+				line-height: 1
+				transform: translateX(-3px) translateY(-4px)
+				color: $flat-gray-1
+				opacity: 0
+
+				transition: opacity 225ms linear
+
+			& ~ span
+				margin-left: $gutter/2
+				font-size: .9rem
+				opacity: .8
+
+				transition: opacity 225ms linear
+
+		&:checked
+			& + .Form__CheckBox__Clickable
+				background-color: $flat-blue-1
+
+				transition: background-color 225ms linear
+
+				&:after
+					opacity: 1
+
+					transition: opacity 225ms linear
+
+				& ~ span
+					opacity: 1
+
+					transition: opacity 225ms linear
+
+
+	input,
+	select,
+	textarea
+		border: 1px solid $flat-gray-2
+		box-shadow: 0
+		transition: all 225ms linear
+
+		&:focus
+			outline: 0
+			border-bottom: 1px solid rgba($flat-gray-2, 0)
+			box-shadow: 0px 3px 0px 0px $flat-blue-2
+
+			transition: all 225ms linear

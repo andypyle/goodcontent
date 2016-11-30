@@ -146,13 +146,43 @@ html
 					a.Button.Button--green(href='#') 
 						i.fa.fa-angle-left
 						| Back
-					a.Button.Button--blue(href='#') 
-						i.fa.fa-floppy-o
-						| Save
 					a.Button.Button--red(href='#') 
 						i.fa.fa-trash
 						| Delete
 			section.Editor__Main
+				form.Form
+					.Form__Row
+						.Form__InputGroup
+							label.Form__Label(for='InputText1') Input Text Label
+							input.Form__InputText(name='InputText1', id='InputText1', placeholder='Input Text')
+						.Form__InputGroup
+							label.Form__Label(for='Select1') Select Box Label
+							select.Form__Select(name='Select1', id='Select1')
+								option(value='Item 1') Item 1
+								option(value='Item 2') Item 2
+								option(value='Item 3') Item 3
+					.Form__Row
+						.Form__InputGroup
+							label.Form__Label(for='TextArea1') Textarea Label
+							textarea.Form__TextArea(name='TextArea1', id='TextArea1') Text area text.
+					.Form__Row
+						.Form__InputGroup--horizontal
+							input.Form__CheckBox(type='checkbox', name='CheckBox1', id='CheckBox1')
+							label.Form__CheckBox__Clickable(for='CheckBox1')
+							span.Form__CheckBox__Label CheckBox 1
+						.Form__InputGroup--horizontal
+							input.Form__CheckBox(type='checkbox', name='CheckBox2', id='CheckBox2')
+							label.Form__CheckBox__Clickable(for='CheckBox2')
+							span.Form__CheckBox__Label CheckBox 2
+						.Form__InputGroup--horizontal
+							input.Form__CheckBox(type='checkbox', name='CheckBox3', id='CheckBox3')
+							label.Form__CheckBox__Clickable(for='CheckBox3')
+							span.Form__CheckBox__Label CheckBox 3
+						.Form__InputGroup--horizontal
+							input.Form__CheckBox(type='checkbox', name='CheckBox4', id='CheckBox4')
+							label.Form__CheckBox__Clickable(for='CheckBox4')
+							span.Form__CheckBox__Label CheckBox 4
+
 				block content
 
 		
