@@ -4,7 +4,7 @@ doctype html
 html
 	head
 		title= title
-		link(rel='stylesheet' href='//brick.a.ssl.fastly.net/Roboto:300,400,500,700')
+		link(rel='stylesheet' href='//brick.a.ssl.fastly.net/Raleway:300,400,500,700/Roboto:300,400,500,700">')
 		link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
 		link(rel='stylesheet', href='./styles/style.css')
 	body
@@ -41,37 +41,37 @@ html
 										.Navigation__Item__Submenu__Item__Link__Left
 											i.fa.fa-home
 										.Navigation__Item__Submenu__Item__Link__Right
-											span Page 1
+											span Home
 								li.Navigation__Item__Submenu__Item
 									a.Navigation__Item__Submenu__Item__Link(href='#')
 										.Navigation__Item__Submenu__Item__Link__Left
 											i.fa.fa-info
 										.Navigation__Item__Submenu__Item__Link__Right
-											span Page 2
+											span About
 								li.Navigation__Item__Submenu__Item
 									a.Navigation__Item__Submenu__Item__Link(href='#')
 										.Navigation__Item__Submenu__Item__Link__Left
 											i.fa.fa-music
 										.Navigation__Item__Submenu__Item__Link__Right
-											span Page 3
+											span Music
 								li.Navigation__Item__Submenu__Item
 									a.Navigation__Item__Submenu__Item__Link(href='#')
 										.Navigation__Item__Submenu__Item__Link__Left
 											i.fa.fa-picture-o
 										.Navigation__Item__Submenu__Item__Link__Right
-											span Page 4
+											span Photos
 								li.Navigation__Item__Submenu__Item
 									a.Navigation__Item__Submenu__Item__Link(href='#')
 										.Navigation__Item__Submenu__Item__Link__Left
 											i.fa.fa-envelope-o
 										.Navigation__Item__Submenu__Item__Link__Right
-											span Page 5
+											span Contact
 								li.Navigation__Item__Submenu__Item
 									a.Navigation__Item__Submenu__Item__Link(href='#')
 										.Navigation__Item__Submenu__Item__Link__Left
 											i.fa.fa-list-alt
 										.Navigation__Item__Submenu__Item__Link__Right
-											span Page 6
+											span Tour Dates
 
 						li.Navigation__Item
 							a.Navigation__Item__Link(href='#')
@@ -89,19 +89,34 @@ html
 											i.fa.fa-book
 										.Navigation__Item__Submenu__Item__Link__Right
 											span List 1
+											i.fa.fa-plus.AddListButton(data-id='1')
 								li.Navigation__Item__Submenu__Item
 									a.Navigation__Item__Submenu__Item__Link(href='#')
 										.Navigation__Item__Submenu__Item__Link__Left
 											i.fa.fa-film
 										.Navigation__Item__Submenu__Item__Link__Right
 											span List 2
+											i.fa.fa-plus.AddListButton(data-id='2')
 								li.Navigation__Item__Submenu__Item
 									a.Navigation__Item__Submenu__Item__Link(href='#')
 										.Navigation__Item__Submenu__Item__Link__Left
 											i.fa.fa-picture-o
 										.Navigation__Item__Submenu__Item__Link__Right
 											span List 3
+											i.fa.fa-plus.AddListButton(data-id='3')
 
+						li.Navigation__Item
+							a.Navigation__Item__Link(href='#')
+								.Navigation__Item__Link__Left
+									i.fa.fa-globe.fa-2x
+								.Navigation__Item__Link__Right
+									span Global Content
+						li.Navigation__Item
+							a.Navigation__Item__Link(href='#')
+								.Navigation__Item__Link__Left
+									i.fa.fa-files-o.fa-2x
+								.Navigation__Item__Link__Right
+									span Media
 						li.Navigation__Item
 							a.Navigation__Item__Link(href='#')
 								.Navigation__Item__Link__Left
@@ -114,6 +129,7 @@ html
 									i.fa.fa-cog.fa-2x
 								.Navigation__Item__Link__Right
 									span Config
+
 
 
 		block content

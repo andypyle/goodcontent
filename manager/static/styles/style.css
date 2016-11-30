@@ -8,7 +8,7 @@ html {
 
 body {
   margin: 0;
-  font: 16px/1 "Roboto", "Tahoma", sans-serif;
+  font: 16px/1 "Raleway", "Tahoma", sans-serif;
 }
 
 iframe {
@@ -239,15 +239,10 @@ body {
 }
 
 .Sidebar {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-flow: column nowrap;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
+  display: block;
+  overflow: hidden;
   width: 25%;
+  height: 100%;
   background: #34495E;
   color: #ECF0F1;
 }
@@ -258,6 +253,13 @@ body {
 
 .Sidebar__Module + .Sidebar__Module {
   margin-top: 0;
+  padding-bottom: 1em;
+  border-bottom: 3px solid rgba(127, 140, 141, 0.25);
+}
+
+.Sidebar__Module:last-of-type {
+  padding-bottom: 0;
+  border: 0;
 }
 
 .LoggedInUser {
@@ -269,11 +271,6 @@ body {
   -webkit-flex-flow: row nowrap;
       -ms-flex-flow: row nowrap;
           flex-flow: row nowrap;
-  -webkit-box-align: space-around;
-  -webkit-align-items: space-around;
-     -moz-box-align: space-around;
-      -ms-flex-align: space-around;
-          align-items: space-around;
   background: #2980B9;
 }
 
@@ -412,27 +409,13 @@ body {
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-     -moz-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  height: 100%;
 }
 
 .Navigation {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-flow: column nowrap;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-     -moz-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 .Navigation__Item {
@@ -447,7 +430,7 @@ body {
 }
 
 .Navigation__Item:hover .Navigation__Item__Submenu {
-  max-height: 20rem;
+  max-height: 18rem;
   opacity: 1;
   border-bottom: 1px dotted rgba(127, 140, 141, 0.2);
   -webkit-transition: all 250ms linear;
@@ -507,10 +490,11 @@ body {
       -ms-flex: 1;
           flex: 1;
   padding: 0.5em;
+  letter-spacing: .05rem;
 }
 
 .Navigation__Item__Link__Right span {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 300;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -536,9 +520,9 @@ body {
   opacity: 0;
   max-height: 0;
   overflow: hidden;
-  -webkit-transition: all 250ms linear;
-  -moz-transition: all 250ms linear;
-  transition: all 250ms linear;
+  -webkit-transition: all 50ms linear;
+  -moz-transition: all 50ms linear;
+  transition: all 50ms linear;
 }
 
 .Navigation__Item__Submenu__Item {
@@ -580,6 +564,17 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+.Navigation__Item__Submenu__Item__Link:hover .AddListButton {
+  -webkit-transform: translateX(0);
+     -moz-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
+  opacity: .5;
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
 .Navigation__Item__Submenu__Item__Link__Left {
   display: -webkit-box;
   display: -webkit-flex;
@@ -600,14 +595,41 @@ body {
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-flow: row nowrap;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
      -moz-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+     -moz-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  letter-spacing: .05rem;
+  overflow: hidden;
 }
 
 .Navigation__Item__Submenu__Item__Link__Right span {
   font-size: 1rem;
   font-weight: 300;
+}
+
+.Navigation__Item__Submenu__Item__Link__Right .AddListButton {
+  display: block;
+  opacity: 0;
+  padding: 0 0.5em;
+  -webkit-transform: translateX(100%);
+     -moz-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+          transform: translateX(100%);
+  -webkit-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+.Navigation__Item__Submenu__Item__Link__Right .AddListButton:hover {
+  opacity: 1;
 }

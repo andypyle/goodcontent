@@ -1,6 +1,9 @@
 .Sidebar
-	+flex(column, nowrap)
+	display: block
+	overflow: hidden
+
 	width: 25%
+	height: 100%
 	background: $flat-blue-3
 	color: $flat-gray-1
 
@@ -9,10 +12,16 @@
 
 		& + &
 			margin-top: 0
+			padding-bottom: $gutter
+			border-bottom: 3px solid rgba($flat-gray-4, .25)
+
+		&:last-of-type
+			padding-bottom: 0
+			border: 0
+
 
 .LoggedInUser
 	+flex(row, nowrap)
-	align-items: space-around
 	background: $flat-blue-2
 
 	+element('Avatar')

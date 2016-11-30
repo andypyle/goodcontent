@@ -1,17 +1,18 @@
 .NavigationContainer
 	+flex
-	flex: 1
+	height: 100%
 
 .Navigation
-	+flex(column, nowrap)
-	flex: 1
+	display: block
+	height: 100%
+	width: 100%
 
 	+element('Item')
 		+flex(column, nowrap)
 
 		&:hover
 			.Navigation__Item__Submenu
-				max-height: 20rem
+				max-height: 18rem
 				opacity: 1
 				border-bottom: 1px dotted rgba($flat-gray-4, .2)
 				transition: all 250ms linear
@@ -34,9 +35,10 @@
 				+flex
 				flex: 1
 				padding: $gutter / 2
+				letter-spacing: .05rem
 				
 				span
-					font-size: 1.25rem
+					font-size: 1.15rem
 					font-weight: 300
 					flex: 1
 
@@ -46,12 +48,11 @@
 
 		+element('Submenu')
 			+flex(column, nowrap)
-
 			opacity: 0
 			max-height: 0
-			overflow: hidden			
+			overflow: hidden
 
-			transition: all 250ms linear
+			transition: all 50ms linear
 
 			+element('Item')
 				+flex(row, nowrap)
@@ -67,16 +68,37 @@
 					&:hover
 						background-color: rgba(255,255,255,0.1)
 
+						.AddListButton
+							transform: translateX(0)
+							opacity: .5
+
+							transition: all 200ms linear
+
 					+element('Left')
 						+flex
 						width: 13%
 						justify-content: center
 
 					+element('Right')
-						+flex
+						+flex(row, nowrap)
 						flex: 1
+						justify-content: space-between
+						letter-spacing: .05rem
+						overflow: hidden
 						
 						
 						span
 							font-size: 1rem
 							font-weight: 300
+
+						.AddListButton
+							display: block
+							opacity: 0
+							padding: 0 $gutter/2
+							transform: translateX(100%)
+
+							transition: all 200ms linear
+
+							&:hover
+								opacity: 1
+
