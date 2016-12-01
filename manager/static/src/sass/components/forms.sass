@@ -19,6 +19,14 @@
 
 			.Button
 				font-size: 1.25rem
+
+		+modifier('heading')
+			border-bottom: 2px solid darken($flat-gray-1, 10%)
+			margin: $gutter $gutter 0
+			h2
+				font-size: 1.5rem
+				font-weight: 500
+				padding: $gutter/2 $gutter/2.5
 				
 
 
@@ -32,12 +40,34 @@
 			+flex(row, nowrap)
 			align-items: center
 			flex: 1
+			margin: $gutter*2.5 $gutter/2 $gutter/2 $gutter/2
+
+		+modifier('smaller')
+			+flex(row, nowrap)
+			align-items: center
+			width: 5%
 			margin: $gutter/2
+
+			.Button
+				i
+					margin: 0
+					padding: 0
+
+		+modifier('smallerNoLabel')
+			+flex(row, nowrap)
+			align-items: center
+			width: 5%
+			//margin: $gutter/2
+
+			.Button
+				i
+					margin: 0
+					padding: 0
 
 
 	+element('Label')
 		font-size: 1.05rem
-		font-weight: 700
+		font-weight: 400
 		text-transform: uppercase
 		margin: $gutter/2
 
@@ -144,7 +174,7 @@
 				transition: opacity 225ms linear, transform 150ms linear
 
 			& ~ span
-				margin-left: $gutter/2
+				margin: 0 $gutter/2
 				font-size: .9rem
 				opacity: .8
 

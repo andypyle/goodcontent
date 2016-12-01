@@ -1,4 +1,4 @@
-extends manager.layout.pug
+extends ../manager.layout.pug
 
 block content
 	header.Editor__Header
@@ -15,18 +15,45 @@ block content
 			.Form__Row
 				.Form__InputGroup
 					label.Form__Label(for='name') Name
-					input.Form__InputText(name='name', id='name', placeholder='Page Name')
+					input.Form__InputText.js-pagename(name='name', id='name', placeholder='Page Name')
 				.Form__InputGroup
 					label.Form__Label(for='slug') Slug
-					input.Form__InputText(name='slug', id='slug', placeholder='/slug')
+					input.Form__InputText.js-pageslug(name='slug', id='slug', placeholder='/slug')
 			.Form__Row
 				.Form__InputGroup
-					label.Form__Label(for='Select1') Select Box Label
-					select.Form__Select(name='Select1', id='Select1')
-						option(value='Item 1') Item 1
-						option(value='Item 2') Item 2
-						option(value='Item 3') Item 3
-			
+					label.Form__Label(for='template') Template
+					select.Form__Select(name='template', id='template')
+						option(value='Item 1') aboutus
+						option(value='Item 2') portfolio
+						option(value='Item 3') contact
+				.Form__InputGroup--horizontal
+					input.Form__CheckBox(type='checkbox', name='haslist', id='haslist')
+					label.Form__CheckBox__Clickable(for='haslist')
+					span.Form__CheckBox__Label Has List
+
+					input.Form__CheckBox(type='checkbox', name='ishome', id='ishome')
+					label.Form__CheckBox__Clickable(for='ishome')
+					span.Form__CheckBox__Label Homepage
+			.Form__Row.Form__Row--heading
+				h2 Content Fields
+			.js-formrows
+				.Form__Row
+					.Form__InputGroup.Field__TypeSelector
+						//label.Form__Label(for='fieldtype') Content Type
+						select.Form__Select.js-selecttype(name='fieldtype', id='fieldtype')
+							option(value='shorttext') Short Text
+							option(value='paragraph') Paragraph
+							option(value='image') Image
+							option(value='video') Video Embed
+					.Form__InputGroup.Field__Name
+						//label.Form__Label(for='fieldname') Field Name
+						input.Form__InputText(name='fieldname', id='fieldname', placeholder='Field Name')
+					.Form__InputGroup.Field__Value
+						//label.Form__Label(for='fieldvalue') Field Value
+						input.Form__InputText(name='fieldvalue', id='fieldvalue', placeholder='Field Value')
+					.Form__InputGroup--smaller
+						button.Button.Button--blue.js-addrow
+							i.fa.fa-plus
 			.Form__Row.Form__Row--buttons
 				a.Button.Button--blue(href='#')
 					i.fa.fa-plus

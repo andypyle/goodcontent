@@ -2,11 +2,9 @@ let express         = 	require('express');
 let router 			= 	express.Router();
 
 router.get('/', (req, res, next) => {
-	res.render('index', {title: 'Manager Section'});
+	res.render('pages/index.pug');
 });
 
-router.use('/pages', require('./pages/index.js'));
-
-
+router.use('/create', require('./page.create.js'));
 
 module.exports = router;

@@ -63,6 +63,9 @@ gulp.task('browsersync', ['nodemon'], function(){
         port: 3002
     });
 
+    gulp.watch('./public/src/js/**/*.js', ['site-js']);
+    gulp.watch('./manager/static/src/js/**/*.js', ['manager-js']);
+    
     gulp.watch('./public/src/sass/**/*.sass', ['sass-site']);
     gulp.watch('./manager/static/src/sass/**/*.sass', ['sass-manager']);  
 });
@@ -181,7 +184,8 @@ gulp.task('nodemon', function (cb) {
 	let started = false;
 
 	return nodemon({
-		script: 'app.js'
+		script: 'app.js',
+        ignore: ['./manager/static/','./public/']
 	}).on('start', function () {
 		// to avoid nodemon being started multiple times
 		if (!started) {
