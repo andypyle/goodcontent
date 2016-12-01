@@ -1,0 +1,33 @@
+extends manager.layout.pug
+
+block content
+	header.Editor__Header
+		h1.Editor__Header__Heading
+			| Pages
+			i.fa.fa-angle-double-right
+			| New Page
+		.Editor__Header__Buttons
+			a.Button.Button--green(href='#') 
+				i.fa.fa-angle-left
+				| Back
+	section.Editor__Main
+		form.Form
+			.Form__Row
+				.Form__InputGroup
+					label.Form__Label(for='name') Name
+					input.Form__InputText(name='name', id='name', placeholder='Page Name')
+				.Form__InputGroup
+					label.Form__Label(for='slug') Slug
+					input.Form__InputText(name='slug', id='slug', placeholder='/slug')
+			.Form__Row
+				.Form__InputGroup
+					label.Form__Label(for='Select1') Select Box Label
+					select.Form__Select(name='Select1', id='Select1')
+						option(value='Item 1') Item 1
+						option(value='Item 2') Item 2
+						option(value='Item 3') Item 3
+			
+			.Form__Row.Form__Row--buttons
+				a.Button.Button--blue(href='#')
+					i.fa.fa-plus
+					| Create Page
