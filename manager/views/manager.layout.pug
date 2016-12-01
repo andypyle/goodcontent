@@ -164,7 +164,7 @@ html
 					.Form__Row
 						.Form__InputGroup
 							label.Form__Label(for='TextArea1') Textarea Label
-							textarea.Form__TextArea(name='TextArea1', id='TextArea1') Text area text.
+							textarea.Form__TextArea(name='TextArea1', id='TextArea1', placeholder='Textarea text.')
 					.Form__Row
 						.Form__InputGroup--horizontal
 							input.Form__CheckBox(type='checkbox', name='CheckBox1', id='CheckBox1')
@@ -182,6 +182,24 @@ html
 							input.Form__CheckBox(type='checkbox', name='CheckBox4', id='CheckBox4')
 							label.Form__CheckBox__Clickable(for='CheckBox4')
 							span.Form__CheckBox__Label CheckBox 4
+					.Form__Row.Form__Row--baseline
+						.Form__InputGroup
+							label.Form__Label(for='InputText1') Input Text Label
+							input.Form__InputText(name='InputText1', id='InputText1', placeholder='Input Text')
+						.Form__InputGroup
+							label.Form__Label(for='InputText1') Input Text Label
+							input.Form__InputText(name='InputText1', id='InputText1', placeholder='Input Text')
+						.Form__InputGroup
+							label.Form__Label(for='FileUpload1') File Upload
+							input.Form__FileUpload(type='file', name='FileUpload1', id='FileUpload1')
+							label.Form__FileUpload__Clickable(for='FileUpload1')
+								i.fa.fa-upload
+								span.Form__FileUpload__ButtonText Select File
+								span.Form__FileUpload__Progress
+					.Form__Row.Form__Row--buttons
+						a.Button.Button--blue(href='#')
+							i.fa.fa-plus
+							| Create object
 
 				block content
 
