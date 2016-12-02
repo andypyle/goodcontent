@@ -10,7 +10,7 @@ exports.addRow = function(e){
 	let rowsContainer = $('.js-formrows');
 	let newRow = $(`
 		<div class="Form__Row">
-			<div class="Form__InputGroup">
+			<div class="Form__InputGroup Field__Type">
 				<select class="Form__Select js-selecttype" name="fieldtype" id="fieldtype">
 					<option value="shorttext">Short Text</option>
 					<option value="paragraph">Paragraph</option>
@@ -18,10 +18,10 @@ exports.addRow = function(e){
 					<option value="video">Video Embed</option>
 				</select>
 			</div>
-			<div class="Form__InputGroup">
+			<div class="Form__InputGroup Field__Name">
 				<input class="Form__InputText" name="fieldname" id="fieldname" placeholder="Field Name">
 			</div>
-			<div class="Form__InputGroup">
+			<div class="Form__InputGroup Field__Value">
 				<input class="Form__InputText" name="fieldvalue" id="fieldvalue" placeholder="Field Value">
 			</div>
 			<div class="Form__InputGroup--smaller">
