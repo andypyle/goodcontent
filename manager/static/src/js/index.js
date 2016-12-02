@@ -21,6 +21,9 @@ if(checkRoute('/pages/create')){
 			slugField.val('/' + slugify(e.target.value));
 		});
 
+		// The form.
+		let form = $('.Form');
+
 		// Dynamically added rows.
 		let formRows = $('.js-formrows');
 
@@ -36,6 +39,22 @@ if(checkRoute('/pages/create')){
 
 		formRows.on('click', '.js-addrow', addRow);
 		formRows.on('click', '.js-delrow', delRow);
+
+		formRows.on('change', '.js-addfile', function(e){
+			console.log(e.target.filename);
+		})
+
+		form.on('submit', function(e){
+			e.preventDefault();
+			$.ajax({
+				url: '/manager/pages/create',
+				method: 'POST',
+				data: form.serialize()
+			})
+			.done(function(data){
+				console.log(data);
+			});
+		})
 	});	
 }
 

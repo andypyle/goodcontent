@@ -11,7 +11,7 @@ block content
 				i.fa.fa-angle-left
 				| Back
 	section.Editor__Main
-		form.Form
+		form.Form(method='POST')
 			.Form__Row
 				.Form__InputGroup
 					label.Form__Label(for='name') Name
@@ -55,6 +55,6 @@ block content
 						button.Button.Button--blue.js-addrow
 							i.fa.fa-plus
 			.Form__Row.Form__Row--buttons
-				a.Button.Button--blue(href='#')
+				button.Button.Button--blue(type='submit')
 					i.fa.fa-plus
 					| Create Page
