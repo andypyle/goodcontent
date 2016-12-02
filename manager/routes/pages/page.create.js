@@ -28,7 +28,7 @@ router.post('/', (req, res, next) => {
 	page.slug = slug;
 	page.template = template;
 
-	res.json(page);
+	res.json(req.body);
 })
 
 module.exports = router;
