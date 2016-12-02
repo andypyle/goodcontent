@@ -5,7 +5,7 @@ window.jQuery = jQuery;
 
 exports.addRow = function(e){
 	e.preventDefault();
-	console.log($(this).remove());
+	$(this).parent().html(`<button class="Button Button--red js-delrow"><i class="fa fa-trash-o"></i></button>`);
 	
 	let rowsContainer = $('.js-formrows');
 	let newRow = $(`
@@ -33,6 +33,5 @@ exports.addRow = function(e){
 	newRow.hide();
 
 	rowsContainer.append(newRow);
-	newRow.fadeIn();
-
+	newRow.slideDown();
 };

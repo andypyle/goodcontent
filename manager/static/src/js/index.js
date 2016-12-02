@@ -4,6 +4,7 @@ window.$ = $;
 window.jQuery = jQuery;
 
 let addRow = require('./pages.addrow.js').addRow;
+let delRow = require('./pages.delrow.js').delRow;
 let selectType = require('./pages.selecttype.js').selectType;
 let slugify = require('./helper.slugify.js');
 
@@ -29,9 +30,12 @@ if(checkRoute('/pages/create')){
 
 		// Add row button
 		let addRowBtn = $('.js-addrow');
-				
 
-		formRows.on('click', '.Button', addRow);
+		// Delete row button
+		let delRowBtn = $('.js-delrow');				
+
+		formRows.on('click', '.js-addrow', addRow);
+		formRows.on('click', '.js-delrow', delRow);
 	});	
 }
 
