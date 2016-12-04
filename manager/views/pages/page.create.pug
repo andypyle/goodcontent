@@ -11,7 +11,7 @@ block content
 				i.fa.fa-angle-left
 				| Back
 	section.Editor__Main
-		form.Form(method='POST')
+		form.Form(method='POST', enctype='multipart/form-data')
 			.Form__Row
 				.Form__InputGroup
 					label.Form__Label(for='name') Name

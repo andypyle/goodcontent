@@ -6,6 +6,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.use('/pages', require('./pages/index.js'));
+router.use('/upload', require('./fileupload/index.js'));
 
 
 

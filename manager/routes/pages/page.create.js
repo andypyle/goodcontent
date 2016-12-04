@@ -1,5 +1,7 @@
 let express         = 	require('express');
 let router 			= 	express.Router();
+let multer 			= 	require('multer');
+let upload 			= 	multer({ dest: './uploads/' });
 
 router.get('/', (req, res, next) => {
 	res.render('pages/page.create.pug');
@@ -28,7 +30,7 @@ router.post('/', (req, res, next) => {
 	page.slug = slug;
 	page.template = template;
 
-	res.json(req.body);
+	res.json(page);
 })
 
 module.exports = router;

@@ -12,6 +12,25 @@ function checkRoute(route){
 	return window.location.pathname.includes(route);
 };
 
+function uploadFile(data, endpoint){
+	return new Promise((resolve, reject) => {
+		$.ajax({
+			url: endpoint,
+			method: 'POST',
+			data: data,
+			cache: false,
+		    contentType: false,
+		    processData: false,
+		    success: function(data) {
+		    	return resolve(data);
+		    },
+		    error: function(err) {
+		    	return reject(err);
+		    }
+		});
+	})
+};
+
 if(checkRoute('/pages/create')){
 	$(document).ready(function(){
 		// Automatically fill slug field with slugified name.
@@ -41,11 +60,32 @@ if(checkRoute('/pages/create')){
 		formRows.on('click', '.js-delrow', delRow);
 
 		formRows.on('change', '.js-addfile', function(e){
-			console.log(e.target.filename);
+			//let uploadPrompt = confirm('Are you sure you want to upload: \n' + e.target.value + '?');
+			let data = new FormData();
+			let file = this.files[0];
+			data.append('file', file);
+			
+			$.ajax({
+				url: '/manager/upload',
+				method: 'POST',
+				data: data,
+				cache: false,
+			    contentType: false,
+			    processData: false,
+			    success: function(data) {
+			    	console.log(data);
+			    },
+			    error: function(err) {
+			    	console.error(err);
+			    }
+			});
+			
+
 		})
 
 		form.on('submit', function(e){
 			e.preventDefault();
+			
 			$.ajax({
 				url: '/manager/pages/create',
 				method: 'POST',
@@ -54,6 +94,7 @@ if(checkRoute('/pages/create')){
 			.done(function(data){
 				console.log(data);
 			});
+			
 		})
 	});	
 }

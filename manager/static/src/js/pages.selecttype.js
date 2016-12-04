@@ -16,7 +16,7 @@ exports.selectType = function(e){
 			<textarea class="Form__TextArea" name="fieldvalue" id="fieldvalue-${currentRowIndex}" placeholder="Field Value"></textarea>
 		`,
 		image: `
-			<input class="Form__FileUpload js-addfile" type="file" name="fieldvalue" id="${currentRowIndex}">
+			<input class="Form__FileUpload js-addfile" type="file" name="photo" id="${currentRowIndex}">
 			<label class="Form__FileUpload__Clickable" for="${currentRowIndex}">
 				<i class="fa fa-upload"></i>
 				<span class="Form__FileUpload__ButtonText">Select File</span>
