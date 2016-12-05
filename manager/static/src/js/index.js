@@ -60,28 +60,61 @@ if(checkRoute('/pages/create')){
 		formRows.on('click', '.js-delrow', delRow);
 
 		formRows.on('change', '.js-addfile', function(e){
-			//let uploadPrompt = confirm('Are you sure you want to upload: \n' + e.target.value + '?');
+			let uploadPrompt = confirm('Are you sure you want to upload: \n' + e.target.value + '?');
 			let data = new FormData();
 			let file = this.files[0];
-			data.append('file', file);
-			
-			$.ajax({
-				url: '/manager/upload',
-				method: 'POST',
-				data: data,
-				cache: false,
-			    contentType: false,
-			    processData: false,
-			    success: function(data) {
-			    	console.log(data);
-			    },
-			    error: function(err) {
-			    	console.error(err);
-			    }
-			});
-			
+			data.append('photo', file);
+			let progressBar = $(this).siblings('.Form__FileUpload__Clickable').children('.Form__FileUpload__Progress');
+			let progressText = $(this).siblings('.Form__FileUpload__Clickable').children('.Form__FileUpload__ButtonText');
+			let buttonIcon = $(this).siblings('.Form__FileUpload__Clickable').children('.fa');
+					
+			if(uploadPrompt){
+				$.ajax({
+					url: '/manager/upload',
+					method: 'POST',
+					data: data,
+					cache: false,
+				    contentType: false,
+				    processData: false,
+				    xhr: function(){
+				    	let xhr = $.ajaxSettings.xhr();
+				    	xhr.upload.onprogress = (e) => {
+				    		//console.log(e.loaded);
+				    		let percentage = Math.floor(e.loaded / e.total * 100);
+				    		progressBar.width(percentage + '%');
 
-		})
+				    		progressText.html(`${percentage}%`);
+				    		buttonIcon.fadeOut();
+				    	}
+				    	xhr.upload.onload = () => {
+				    		console.log('Upload complete.');
+				    	}
+
+				    	return xhr;
+				    },
+				    success: function(dataReturned) {
+				    	//console.log(dataReturned);
+				    	window.setTimeout(() => {
+				    		progressText.animate({
+				    			opacity: 0
+				    		}, 400, () => {
+				    			progressText.css({
+				    				'fontSize':'.75rem',
+				    				'whiteSpace':'nowrap'
+				    			})
+				    			progressText.html(dataReturned.filename)
+				    				.animate({
+				    					opacity: 1
+				    				}, 400)
+				    		})
+				    	}, 2500)
+				    },
+				    error: function(err) {
+				    	console.error(err);
+				    }
+				});
+			}
+		});
 
 		form.on('submit', function(e){
 			e.preventDefault();

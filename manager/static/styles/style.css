@@ -514,12 +514,8 @@ body {
   position: relative;
 }
 
-.Form__FileUpload + .Form__FileUpload__Clickable:hover > .Form__FileUpload__Progress {
-  width: 100%;
-  border-right: 2px solid #00ef65;
-  -webkit-transition: width 2000ms ease-out;
-  -moz-transition: width 2000ms ease-out;
-  transition: width 2000ms ease-out;
+.Form__FileUpload + .Form__FileUpload__Clickable:hover {
+  background-color: #57aae1;
 }
 
 .Form__FileUpload + .Form__FileUpload__Clickable i {
@@ -535,12 +531,15 @@ body {
 .Form__FileUpload__Progress {
   display: block;
   width: 0px;
-  height: 100%;
-  background: #00d55a;
+  height: 20%;
+  background: #ff9f06;
   position: absolute;
   bottom: 0;
   left: 0;
   z-index: 0;
+  -webkit-transition: width 50ms ease-out;
+  -moz-transition: width 50ms ease-out;
+  transition: width 50ms ease-out;
 }
 
 .Form__CheckBox {

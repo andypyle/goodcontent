@@ -112,10 +112,7 @@
 			position: relative
 
 			&:hover
-				& > .Form__FileUpload__Progress
-					width: 100%
-					border-right: 2px solid lighten(saturate($flat-green-4, 45%), 5%)
-					transition: width 2000ms ease-out
+				background-color: lighten($flat-blue-1, 8%)
 
 			i
 				margin-right: $gutter/2
@@ -128,13 +125,15 @@
 		+element('Progress')
 			display: block
 			width: 0px
-			height: 100%
-			background: saturate($flat-green-4, 45%)
+			height: 20%
+			background: saturate($flat-orange-1, 25%)
 
 			position: absolute
 			bottom: 0
 			left: 0
 			z-index: 0
+
+			transition: width 50ms ease-out
 
 	+element('CheckBox')
 		opacity: 0
