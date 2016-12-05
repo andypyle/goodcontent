@@ -111,8 +111,34 @@
 			cursor: pointer
 			position: relative
 
+			&.Form__FileUpload__Clickable--uploaded
+
+				&:after
+					$topPosition : calc(-100% + 15px)
+					white-space: nowrap
+					content: attr(data-path)
+					display: block
+					font-size: .65rem
+					font-weight: 300
+					color: white
+					padding: $gutter/2
+					background-color: $flat-blue-3
+					position: absolute
+					top: $topPosition
+					right: 0
+					z-index: 600
+					opacity: 0
+					pointer-events: none
+					transition: opacity 275ms linear
+
+				&:hover
+					&:after
+						opacity: 1
+						transition: opacity 275ms linear
+
+
 			&:hover
-				background-color: lighten($flat-blue-1, 8%)
+				background-color: lighten($flat-blue-1, 8%)					
 
 			i
 				margin-right: $gutter/2

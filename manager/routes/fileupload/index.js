@@ -14,7 +14,7 @@ let diskStorage  	= 	multer.diskStorage({
 	}
 });
 
-let upload 			= 	multer({ storage: diskStorage }).single('photo');
+let upload 			= 	multer({ storage: diskStorage }).single('image');
 
 
 

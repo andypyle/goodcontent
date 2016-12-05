@@ -514,6 +514,34 @@ body {
   position: relative;
 }
 
+.Form__FileUpload + .Form__FileUpload__Clickable.Form__FileUpload__Clickable--uploaded:after {
+  white-space: nowrap;
+  content: attr(data-path);
+  display: block;
+  font-size: .65rem;
+  font-weight: 300;
+  color: white;
+  padding: 0.5em;
+  background-color: #34495E;
+  position: absolute;
+  top: -moz-calc(-100% + 15px);
+  top: calc(-100% + 15px);
+  right: 0;
+  z-index: 600;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: opacity 275ms linear;
+  -moz-transition: opacity 275ms linear;
+  transition: opacity 275ms linear;
+}
+
+.Form__FileUpload + .Form__FileUpload__Clickable.Form__FileUpload__Clickable--uploaded:hover:after {
+  opacity: 1;
+  -webkit-transition: opacity 275ms linear;
+  -moz-transition: opacity 275ms linear;
+  transition: opacity 275ms linear;
+}
+
 .Form__FileUpload + .Form__FileUpload__Clickable:hover {
   background-color: #57aae1;
 }

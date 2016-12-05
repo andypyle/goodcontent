@@ -19,12 +19,20 @@ router.post('/', (req, res, next) => {
 
 	let page = {};
 	page.content = {};
-	for(let i in fieldname){
-		page.content[fieldname[i]] = {
-			type: fieldtype[i],
-			value: fieldvalue[i]
-		}		
+	if (fieldname instanceof Array){
+		for(let i in fieldname){
+			page.content[fieldname[i]] = {
+				type: fieldtype[i],
+				value: fieldvalue[i]
+			}		
+		}
+	} else {
+		page.content[fieldname] = {
+			value: fieldvalue,
+			type: fieldtype
+		}
 	}
+	
 
 	page.name = name;
 	page.slug = slug;
