@@ -6,6 +6,6 @@ window.jQuery = jQuery;
 exports.delRow = function(e){
 	e.preventDefault();
 	$(this).parent().parent().slideUp(350, () => {
-		return $(this).remove();
+		return $(this).parent().parent().remove();
 	});
 };

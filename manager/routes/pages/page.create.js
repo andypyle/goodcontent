@@ -32,7 +32,6 @@ router.post('/', (req, res, next) => {
 			type: fieldtype
 		}
 	}
-	
 
 	page.name = name;
 	page.slug = slug;

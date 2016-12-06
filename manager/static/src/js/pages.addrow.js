@@ -34,4 +34,5 @@ exports.addRow = function(e){
 
 	rowsContainer.append(newRow);
 	newRow.slideDown();
+	newRow.children('.Field__Type').children('.Form__Select').focus();
 };

@@ -257,7 +257,7 @@ body {
   background-color: #2980B9;
 }
 
-.Button--blue:hover {
+.Button--blue:hover, .Button--blue:focus {
   background-color: #3896d3;
 }
 
@@ -559,8 +559,8 @@ body {
 .Form__FileUpload__Progress {
   display: block;
   width: 0px;
-  height: 20%;
-  background: #ff9f06;
+  height: 12%;
+  background: #ffa920;
   position: absolute;
   bottom: 0;
   left: 0;
