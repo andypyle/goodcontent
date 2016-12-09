@@ -15,7 +15,7 @@ const sass 							=		require('gulp-sass'),
 			prefix 						=		require('gulp-autoprefixer'),
 			eslint 						=		require('gulp-eslint'),
 			gutil 						=		require('gulp-util'),
-			mocha 						=		require('gulp-spawn-mocha'),
+			mocha 						=		require('gulp-mocha'),
 			uglify 						=		require('gulp-uglify'),
 			concat 						=		require('gulp-concat'),
 			minifyCSS 				=		require('gulp-minify-css'),
@@ -55,6 +55,31 @@ const jsFiles = {
 				'./manager/static/js',									// JS Output for manager section
 				'./public/js'	,													// JS Output for public
 		],
+};
+
+
+
+/**
+ * Test paths
+ */
+const testPaths = {
+	server: [
+		'./testhelpers/index.js',
+		'./**/*.spec.js',
+		'!./node_modules/**/*.*',
+		'!./public/src/**/*.js',
+		'!./manager/static/src/**/*.js',
+	],
+	client: [
+		'./testhelpers/index.js',
+		'./public/src/js/**/*.spec.js',
+		'./manager/static/src/js/**/*.spec.js',
+	],
+	all: [
+		'./testhelpers/index.js',
+		'/**/*.spec.js',
+		'!./node_modules/**/*.*',
+	],
 };
 
 
@@ -199,7 +224,7 @@ gulp.task('lint-client-js', () => {
  */
 gulp.task('tests:run-all', () => {
 		return gulp
-				.src(['./**/*.spec.js'])
+				.src(testPaths.all)
 				.pipe(mocha());
 });
 
@@ -209,11 +234,7 @@ gulp.task('tests:run-all', () => {
  */
 gulp.task('tests:run-server', () => {
 		return gulp
-				.src([
-					'./**/*.spec.js',
-					'!./public/src/**/*.js',
-					'!./manager/static/src/**/*.js'
-				])
+				.src(testPaths.server)
 				.pipe(mocha());
 });
 
@@ -223,11 +244,7 @@ gulp.task('tests:run-server', () => {
  */
 gulp.task('tests:watch-server', () => {
 		return gulp
-				.src([
-					'./**/*.spec.js',
-					'!./public/src/**/*.js',
-					'!./manager/static/src/**/*.js'
-				])
+				.src(testPaths.server)
 				.pipe(mocha({
 						watch: true,
 						reporter: 'spec',
@@ -241,10 +258,7 @@ gulp.task('tests:watch-server', () => {
  */
 gulp.task('tests:run-client', () => {
 		return gulp
-				.src([
-					'./public/src/js/**/*.spec.js',
-					'./manager/static/src/js/**/*.spec.js',
-				])
+				.src(testPaths.client)
 				.pipe(mocha());
 });
 
@@ -252,12 +266,9 @@ gulp.task('tests:run-client', () => {
 /**
  * Tests task - watch client-side tests
  */
-gulp.task('tests:run-client', () => {
+gulp.task('tests:watch-client', () => {
 		return gulp
-				.src([
-					'./public/src/js/**/*.spec.js',
-					'./manager/static/src/js/**/*.spec.js',
-				])
+				.src(testPaths.client)
 				.pipe(mocha({
 						watch: true,
 						reporter: 'spec',
