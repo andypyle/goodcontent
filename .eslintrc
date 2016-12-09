@@ -1,0 +1,23 @@
+{
+	"parser": "babel-eslint",
+	"extends": "airbnb",
+	"rules": {
+		"linebreak-style": [
+			0,
+			"unix"
+		],
+		"indent": [
+			1,
+			"tab"
+		],
+		"no-tabs": [0],
+		"import/no-unresolved": [0],
+		"no-console": [0],
+		"no-param-reassign": [0],
+		"no-alert": [0],
+		"no-useless-escape": [0],
+	},
+	"env": {
+		"browser": true,
+	}
+}

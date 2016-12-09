@@ -1,66 +1,54 @@
 import $ from 'jquery';
+// eslint-disable-next-line import/no-duplicates
 import jQuery from 'jquery';
+
 window.$ = $;
 window.jQuery = jQuery;
 
-let addRow = require('./pages.addrow.js').addRow;
-let delRow = require('./pages.delrow.js').delRow;
-let selectType = require('./pages.selecttype.js').selectType;
-let slugify = require('./helper.slugify.js');
+const addRow = require('./pages.addrow.js').addRow;
+const delRow = require('./pages.delrow.js').delRow;
+const selectType = require('./pages.selecttype.js').selectType;
+const slugify = require('./helper.slugify.js');
+const uploadFile = require('./pages.fileupload.js').uploadFile;
 
-function checkRoute(route){
+function checkRoute(route) {
 	return window.location.pathname.includes(route);
-};
+}
 
 
-if(checkRoute('/pages/create')){
-	let uploadFile = require('./pages.fileupload.js').uploadFile;
-
-	$(document).ready(function(){
+if (checkRoute('/pages/create')) {
+	$(document).ready(() => {
 		// Automatically fill slug field with slugified name.
-		let pageNameField = $('.js-pagename');
-		let slugField = $('.js-pageslug');
-		pageNameField.on('keyup', function(e){
-			slugField.val('/' + slugify(e.target.value));
-		});
+		const pageNameField = $('.js-pagename');
+		const slugField = $('.js-pageslug');
+		pageNameField.on('keyup', e => slugField.val(`/${slugify(e.target.value)}`));
 
 		// The form.
-		let form = $('.Form');
+		const form = $('.Form');
 
 		// Dynamically added rows.
-		let formRows = $('.js-formrows');
+		const formRows = $('.js-formrows');
 
 		// Select type event
-		let selectTypeField = $('.js-selecttype');
 		formRows.on('change', '.js-selecttype', selectType);
 
-		// Add row button
-		let addRowBtn = $('.js-addrow');
-
-		// Delete row button
-		let delRowBtn = $('.js-delrow');				
-
 		formRows.on('click', '.js-addrow', addRow);
-		
+
 		formRows.on('click', '.js-delrow', delRow);
 
 		formRows.on('change', '.js-addfile', uploadFile);
 
-		form.on('submit', function(e){
+		form.on('submit', (e) => {
 			e.preventDefault();
-			console.log($(this).serialize());
 
-			
 			$.ajax({
 				url: '/manager/pages/create',
 				method: 'POST',
-				data: $('.Form').serialize()
+				data: $('.Form').serialize(),
 			})
-			.done(function(data){
+			.done((data) => {
 				console.log(data);
 			});
-			
-		})
-	});	
+		});
+	});
 }
-

@@ -1,11 +1,6 @@
-import $ from 'jquery';
-import jQuery from 'jquery';
-window.$ = $;
-window.jQuery = jQuery;
+const $ = window.$;
 
-exports.delRow = function(e){
+exports.delRow = function delRow(e) {
 	e.preventDefault();
-	$(this).parent().parent().slideUp(350, () => {
-		return $(this).parent().parent().remove();
-	});
+	$(this).parent().parent().slideUp(350, () => $(this).parent().parent().remove());
 };

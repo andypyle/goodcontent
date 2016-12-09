@@ -1,200 +1,293 @@
-let gulp 		= 	require('gulp'),
-	assign 		= 	require('lodash.assign'),
-	browserify 	= 	require('browserify'),
-	watchify 	= 	require('watchify'),
-	babelify 	= 	require('babelify'),
-	fs 			= 	require('fs'),
-	path 		= 	require('path'),
-	source 		= 	require('vinyl-source-stream'),
-	buffer 		= 	require('vinyl-buffer'),
-	browserSync = 	require('browser-sync').create(),
-	// GULP PLUGINS 
-	sass 		= 	require('gulp-sass'),
-	prefix 		= 	require('gulp-autoprefixer'),
-	gutil 		= 	require('gulp-util'),
-	uglify 		= 	require('gulp-uglify'),
-	concat 		= 	require('gulp-concat'),
-	minifyCSS 	= 	require('gulp-minify-css'),
-	rename 		=	require('gulp-rename'),
-	exit 		= 	require('gulp-exit'),
-	nodemon 	= 	require('gulp-nodemon');
+const gulp 							=		require('gulp'),
+			assign 						=		require('lodash.assign'),
+			browserify 				=		require('browserify'),
+			watchify 					=		require('watchify'),
+			babelify 					=		require('babelify'),
+			fs 								=		require('fs'),
+			es 								=		require('event-stream'),
+			path 							=		require('path'),
+			source 						=		require('vinyl-source-stream'),
+			buffer 						=		require('vinyl-buffer'),
+			browserSync 			=		require('browser-sync').create();
 
-let sources = {
-	manager: {
-		sass: path.resolve('manager','static','src','sass'),
-		js: path.resolve('manager','static','src','js')
-	},
-	site: {
-		sass: path.resolve('public','src','sass'),
-		js: path.resolve('public','src','js')
-	}	
+			// GULP PLUGINS 
+const sass 							=		require('gulp-sass'),
+			prefix 						=		require('gulp-autoprefixer'),
+			eslint 						=		require('gulp-eslint'),
+			gutil 						=		require('gulp-util'),
+			mocha 						=		require('gulp-spawn-mocha'),
+			uglify 						=		require('gulp-uglify'),
+			concat 						=		require('gulp-concat'),
+			minifyCSS 				=		require('gulp-minify-css'),
+			rename 						=		require('gulp-rename'),
+			exit 							=		require('gulp-exit'),
+			nodemon 					=		require('gulp-nodemon');
+
+
+
+/**
+ * Entry / output points
+ * Index of entry array should match index of its respective output array.
+ */
+const sassFiles = {
+		entries: [
+			{
+				file: './manager/static/src/sass/style.sass',	// SASS Entry file for manager section,
+				path: './manager/static/src/sass/'
+			},
+			{
+				file: './public/src/sass/style.sass',					// SASS Entry point for public,
+				path: './public/src/sass/'
+			},			
+		],
+		outputs: [
+				'./manager/static/styles',							// SASS Output for manager section
+				'./public/styles', 											// SASS Output for public.
+		],
 };
 
-let entries = {
-	manager: {
-		sass: path.join(sources.manager.sass, 'style.sass'),
-		js: path.join(sources.manager.js, 'index.js')
-	},
-	site: {
-		sass: path.join(sources.site.sass, 'style.sass'),
-		js: path.join(sources.site.js, 'index.js')
-	}
-}
-
-let output = {
-	manager: {
-		sass: path.resolve('manager','static','styles'),
-		js: path.resolve('manager','static','js')
-	},
-	site: {
-		sass: path.resolve('public','styles'),
-		js: path.resolve('public','js')
-	}
-}
+const jsFiles = {
+		entries: [
+				'./manager/static/src/js/index.js', 		// JS Entry point for manager section
+				'./public/src/js/index.js',							// JS Entry point for public
+		],
+		outputs: [
+				'./manager/static/js',									// JS Output for manager section
+				'./public/js'	,													// JS Output for public
+		],
+};
 
 
 
-
-// DEV SERVER
+/**
+ * Browser-sync task
+ */
 gulp.task('browsersync', ['nodemon'], function(){
-    browserSync.init(null, {
-        proxy: 'http://localhost:3000',
-        files: ['public/**/*.*', 'manager/static/**/*.*'],
-        port: 3002
-    });
+				browserSync.init(null, {
+								proxy: 'http://localhost:3000',
+								files: ['./**/*.*','!./node_modules'],
+								port: 3002
+						});
 
-    gulp.watch('./public/src/js/**/*.js', ['site-js']);
-    gulp.watch('./manager/static/src/js/**/*.js', ['manager-js']);
-    
-    gulp.watch('./public/src/sass/**/*.sass', ['sass-site']);
-    gulp.watch('./manager/static/src/sass/**/*.sass', ['sass-manager']);  
-});
+				gulp.watch([
+					'./public/src/js/**/*.js',
+					'./manager/static/src/js/**/*.js',
+				], ['js']);
 
-gulp.task('sass-site', () => {
-	gulp.src(entries.site.sass)
-    .pipe(sass({
-        'outputStyle':'expanded',
-        'includePaths':['./public/src/sass']
-    })
-    .on('error', sass.logError))
-    .pipe(prefix({
-        browsers: [
-            '> 1%',
-            'last 2 versions',
-            'firefox >= 4',
-            'safari 7',
-            'safari 8',
-            'IE 8',
-            'IE 9',
-            'IE 10',
-            'IE 11'
-            ],
-        cascade: true
-    }))
-    .pipe(rename('style.css'))
-    .pipe(gulp.dest(output.site.sass))
-    .pipe(browserSync.stream());
-});
-
-gulp.task('sass-manager', () => {
-	gulp.src(entries.manager.sass)
-    .pipe(sass({
-        'outputStyle':'expanded',
-        'includePaths':['./manager/static/src/sass']
-    })
-    .on('error', sass.logError))
-    .pipe(prefix({
-        browsers: [
-            '> 1%',
-            'last 2 versions',
-            'firefox >= 4',
-            'safari 7',
-            'safari 8',
-            'IE 8',
-            'IE 9',
-            'IE 10',
-            'IE 11'
-            ],
-        cascade: true
-    }))
-    .pipe(rename('style.css'))
-    .pipe(gulp.dest(output.manager.sass))
-    .pipe(browserSync.stream());
-});
-
-// JS - site
-let siteJsOptions = {
-    entries: [entries.site.js],
-    extensions: ['.js'],
-    transform: [babelify.configure({
-        presets: ["es2015"]
-    })],
-    debug: true,
-    insertGlobals: false
-};
-let siteOpts = assign({}, watchify.args, siteJsOptions);
-let siteB = watchify(browserify(siteOpts));
-
-// 'gulp scripts' task to build scripts
-gulp.task('site-js', bundleSiteScripts);
-siteB.on('update', bundleSiteScripts);
-siteB.on('log', gutil.log);
-
-// bundle() function for js bundling
-function bundleSiteScripts(){
-    return siteB.bundle()
-        .on('error', gutil.log.bind(gutil, 'Browserify error.'))
-        .pipe(source('scripts.js'))
-        .pipe(buffer())
-        .on('error', gutil.log)   
-        .pipe(gulp.dest(output.site.js))
-        .pipe(browserSync.reload({stream:true, once: true}));
-};
-
-// JS - manager
-let managerJsOptions = {
-    entries: [entries.manager.js],
-    extensions: ['.js'],
-    transform: [babelify.configure({
-        presets: ["es2015"]
-    })],
-    debug: true,
-    insertGlobals: false
-};
-let managerOpts = assign({}, watchify.args, managerJsOptions);
-let managerB = watchify(browserify(managerOpts));
-
-// 'gulp scripts' task to build scripts
-gulp.task('manager-js', bundleManagerScripts);
-managerB.on('update', bundleManagerScripts);
-managerB.on('log', gutil.log);
-
-// bundle() function for js bundling
-function bundleManagerScripts(){
-    return managerB.bundle()
-        .on('error', gutil.log.bind(gutil, 'Browserify error.'))
-        .pipe(source('scripts.js'))
-        .pipe(buffer())
-        .on('error', gutil.log)   
-        .pipe(gulp.dest(output.manager.js))
-        .pipe(browserSync.reload({stream:true, once: true}));
-};
-
-gulp.task('nodemon', function (cb) {	
-	let started = false;
-
-	return nodemon({
-		script: 'app.js',
-        ignore: ['./manager/static/','./public/']
-	}).on('start', function () {
-		// to avoid nodemon being started multiple times
-		if (!started) {
-			cb();
-			started = true; 
-		} 
-	});
+				gulp.watch([
+					'./public/src/sass/**/*.sass',
+					'./manager/static/src/sass/**/*.sass',
+				], ['sass']);
 });
 
 
-// DEFAULT
-gulp.task('default', ['nodemon','browsersync','sass-site','sass-manager']);
+/**
+ * Styles task
+ */
+gulp.task('sass', () => {
+		const sassTasks = sassFiles.entries.map((entry, i) => {
+				return gulp
+						.src(entry.file)
+						.pipe(sass({
+								'outputStyle':'expanded',
+								'includePaths':[entry.path]
+						})
+						.on('error', sass.logError))
+						.pipe(prefix({
+								browsers: [
+										'> 1%',
+										'last 2 versions',
+										'firefox >= 4',
+										'safari 7',
+										'safari 8',
+										'IE 8',
+										'IE 9',
+										'IE 10',
+										'IE 11',
+								],
+								cascade: true
+						}))
+						.pipe(rename('style.css'))
+						.pipe(gulp.dest(sassFiles.outputs[i]))
+						.pipe(browserSync.stream());
+		});
+
+		return es.merge.apply(null, sassTasks);
+});
+
+
+
+/**
+ * JS task
+ */
+gulp.task('js', () => {
+		const jsTasks = jsFiles.entries.map((entry, i) => {
+				return browserify({
+						entries: entry,
+						extensions: ['.js'],
+						transform: [
+								babelify.configure({
+										presets: ["es2015"]
+								})
+						],
+				})
+				.bundle()
+				.on('error', gutil.log.bind(gutil, 'Browserify error.'))
+				.pipe(source('scripts.js'))
+				.pipe(buffer())
+				.on('error', gutil.log)
+				.pipe(gulp.dest(jsFiles.outputs[i]))
+				.pipe(browserSync.reload({ stream: true, once: true }));
+		});
+
+		return es.merge.apply(null, jsTasks);
+});
+
+
+ /**
+ * ES/JS Linting task - all js
+ */
+gulp.task('lint-all-js', () => {
+		return gulp
+				.src([
+						'./**/*.js',
+						'!node_modules/**',
+						'!./app/**/*.spec.js',
+				])
+				.pipe(eslint())
+				.pipe(eslint.format())
+				.pipe(eslint.failAfterError());
+});
+
+
+ /**
+ * ES/JS Linting task - server
+ */
+gulp.task('lint-server-js', () => {
+		return gulp
+				.src([
+						'./**/*.js',
+						'!node_modules/**',
+						'!./**/*.spec.js',
+						'!./public/**/*.js',
+						'!./manager/static/**/*.js',
+				])
+				.pipe(eslint())
+				.pipe(eslint.format())
+				.pipe(eslint.failAfterError());
+});
+
+
+ /**
+ * ES/JS Linting task - client js
+ */
+gulp.task('lint-client-js', () => {
+		return gulp
+				.src([
+						'./public/src/js/**/*.js',
+						'./manager/static/src/js/**/*.js',
+				])
+				.pipe(eslint())
+				.pipe(eslint.format())
+				.pipe(eslint.failAfterError());
+});
+
+
+
+ /**
+ * Tests task - run all tests once.
+ */
+gulp.task('tests:run-all', () => {
+		return gulp
+				.src(['./**/*.spec.js'])
+				.pipe(mocha());
+});
+
+
+ /**
+ * Tests task - run server tests once.
+ */
+gulp.task('tests:run-server', () => {
+		return gulp
+				.src([
+					'./**/*.spec.js',
+					'!./public/src/**/*.js',
+					'!./manager/static/src/**/*.js'
+				])
+				.pipe(mocha());
+});
+
+
+/**
+ * Tests task - watch server tests.
+ */
+gulp.task('tests:watch-server', () => {
+		return gulp
+				.src([
+					'./**/*.spec.js',
+					'!./public/src/**/*.js',
+					'!./manager/static/src/**/*.js'
+				])
+				.pipe(mocha({
+						watch: true,
+						reporter: 'spec',
+						})
+				);
+});
+
+
+/**
+ * Tests task - run client-side tests.
+ */
+gulp.task('tests:run-client', () => {
+		return gulp
+				.src([
+					'./public/src/js/**/*.spec.js',
+					'./manager/static/src/js/**/*.spec.js',
+				])
+				.pipe(mocha());
+});
+
+
+/**
+ * Tests task - watch client-side tests
+ */
+gulp.task('tests:run-client', () => {
+		return gulp
+				.src([
+					'./public/src/js/**/*.spec.js',
+					'./manager/static/src/js/**/*.spec.js',
+				])
+				.pipe(mocha({
+						watch: true,
+						reporter: 'spec',
+						})
+				);
+});
+
+
+
+ /**
+ * Nodemon task
+ */
+gulp.task('nodemon', (cb) => {  
+		let started = false;
+
+		return nodemon({
+				script: './app.js',
+				ignore: ['./public/','./manager/static/']
+		}).on('start', () => {
+						// to avoid nodemon being started multiple times
+						if (!started) {
+								cb();
+								started = true; 
+						} 
+		});
+});
+
+
+
+ /**
+ * Default task
+ */
+gulp.task('default', ['sass', 'js', 'browsersync']);

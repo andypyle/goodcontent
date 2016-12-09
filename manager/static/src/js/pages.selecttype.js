@@ -1,14 +1,11 @@
-import $ from 'jquery';
-import jQuery from 'jquery';
-window.$ = $;
-window.jQuery = jQuery;
+const $ = window.$;
 
-exports.selectType = function(e){
-	let valueField = $(this).parent().siblings('.Field__Value');
-	let currentRow = $(this).parent().parent();
-	let currentRowIndex = currentRow.index();
+exports.selectType = function selectType(e) {
+	const valueField = $(this).parent().siblings('.Field__Value');
+	const currentRow = $(this).parent().parent();
+	const currentRowIndex = currentRow.index();
 
-	let html = {
+	const html = {
 		shorttext: `
 			<input class="Form__InputText" name="fieldvalue" id="fieldvalue-${currentRowIndex}" placeholder="Field Value">
 		`,
@@ -26,18 +23,20 @@ exports.selectType = function(e){
 		`,
 		video: `
 			<input class="Form__InputText" name="fieldvalue" id="fieldvalue" placeholder="Embed URL">
-		`
+		`,
 	};
 
-	switch(e.target.value){
-		case 'shorttext':
-			return valueField.html(html.shorttext);
-		case 'paragraph':
-			currentRow.toggleClass('Form__Row--baseline');
-			return valueField.html(html.paragraph);
-		case 'image':
-			return valueField.html(html.image);
-		case 'video':
-			return valueField.html(html.video);
+	switch (e.target.value) {
+	case 'shorttext':
+		return valueField.html(html.shorttext);
+	case 'paragraph':
+		currentRow.toggleClass('Form__Row--baseline');
+		return valueField.html(html.paragraph);
+	case 'image':
+		return valueField.html(html.image);
+	case 'video':
+		return valueField.html(html.video);
+	default:
+		return valueField.html(html.shorttext);
 	}
 };
