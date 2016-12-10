@@ -1,5 +1,6 @@
+// eslint-disable-next-line no-duplicate-imports
 import $ from 'jquery';
-// eslint-disable-next-line import/no-duplicates
+// eslint-disable-next-line no-duplicate-imports
 import jQuery from 'jquery';
 
 window.$ = $;

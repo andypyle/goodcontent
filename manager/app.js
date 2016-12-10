@@ -1,7 +1,8 @@
-let express         = 	require('express');
-let app 			=	express();
-let path 			= 	require('path');
-let managerRoutes 	= 	require('./routes/index');
+const express					=		require('express');
+const path						= 	require('path');
+const managerRoutes		= 	require('./routes/index');
+
+const app =	express();
 
 // Admin gets its own static assets.
 app.use('/manager', express.static('./manager/static'));
@@ -16,6 +17,6 @@ app.set('view engine', 'pug');
 app.locals.pretty = '\t';
 
 // GET /manager/
-app.use('/manager', managerRoutes)
+app.use('/manager', managerRoutes);
 
 module.exports = app;

@@ -1,7 +1,6 @@
-let express         = 	require('express');
-let router 			= 	express.Router();
-let multer 			= 	require('multer');
-let upload 			= 	multer({ dest: './uploads/' });
+const express			= 	require('express');
+
+const router 			= 	express.Router();
 
 router.get('/', (req, res, next) => {
 	res.render('pages/page.create.pug');
@@ -14,23 +13,23 @@ router.post('/', (req, res, next) => {
 		template,
 		fieldtype,
 		fieldname,
-		fieldvalue
+		fieldvalue,
 	} = req.body;
 
-	let page = {};
+	const page = {};
 	page.content = {};
-	if (fieldname instanceof Array){
-		for(let i in fieldname){
-			page.content[fieldname[i]] = {
+	if (fieldname instanceof Array) {
+		fieldname.forEach((e, i) => {
+			page.content[e] = {
 				type: fieldtype[i],
-				value: fieldvalue[i]
-			}		
-		}
+				value: fieldvalue[i],
+			};
+		});
 	} else {
 		page.content[fieldname] = {
 			value: fieldvalue,
-			type: fieldtype
-		}
+			type: fieldtype,
+		};
 	}
 
 	page.name = name;
@@ -38,6 +37,6 @@ router.post('/', (req, res, next) => {
 	page.template = template;
 
 	res.json(page);
-})
+});
 
 module.exports = router;

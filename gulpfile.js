@@ -85,6 +85,36 @@ const testPaths = {
 
 
 /**
+ * ESLint paths
+ */
+const esLintPaths = {
+	server: [
+		'./**/*.js',
+		'!./gulpfile.js',
+		'!node_modules/**',
+		'!./**/*.spec.js',
+		'!./public/**/*.js',
+		'!./manager/static/**/*.js',
+		'!./testhelpers/**',
+	],
+	client: [
+		'./public/src/js/**/*.js',
+		'./manager/static/src/js/**/*.js',
+	],
+	all: [
+		'./**/*.js',
+		'!./public/js/**',
+		'!./manager/static/js/**',
+		'!./node_modules/**',
+		'!./**/*.spec.js',
+		'!./gulpfile.js',
+		'!./testhelpers/**',
+	],
+};
+
+
+
+/**
  * Browser-sync task
  */
 gulp.task('browsersync', ['nodemon'], function(){
@@ -172,13 +202,9 @@ gulp.task('js', () => {
  /**
  * ES/JS Linting task - all js
  */
-gulp.task('lint-all-js', () => {
+gulp.task('eslint:run-all', () => {
 		return gulp
-				.src([
-						'./**/*.js',
-						'!node_modules/**',
-						'!./app/**/*.spec.js',
-				])
+				.src(esLintPaths.all)
 				.pipe(eslint())
 				.pipe(eslint.format())
 				.pipe(eslint.failAfterError());
@@ -186,17 +212,11 @@ gulp.task('lint-all-js', () => {
 
 
  /**
- * ES/JS Linting task - server
+ * ESLint - run lint on server js files.
  */
-gulp.task('lint-server-js', () => {
+gulp.task('eslint:run-server', () => {
 		return gulp
-				.src([
-						'./**/*.js',
-						'!node_modules/**',
-						'!./**/*.spec.js',
-						'!./public/**/*.js',
-						'!./manager/static/**/*.js',
-				])
+				.src(esLintPaths.server)
 				.pipe(eslint())
 				.pipe(eslint.format())
 				.pipe(eslint.failAfterError());
@@ -204,14 +224,11 @@ gulp.task('lint-server-js', () => {
 
 
  /**
- * ES/JS Linting task - client js
+ * ESLint - run lint on client js files.
  */
-gulp.task('lint-client-js', () => {
+gulp.task('eslint:run-client', () => {
 		return gulp
-				.src([
-						'./public/src/js/**/*.js',
-						'./manager/static/src/js/**/*.js',
-				])
+				.src(esLintPaths.client)
 				.pipe(eslint())
 				.pipe(eslint.format())
 				.pipe(eslint.failAfterError());
@@ -219,8 +236,9 @@ gulp.task('lint-client-js', () => {
 
 
 
+
  /**
- * Tests task - run all tests once.
+ * Tests:spec - run all
  */
 gulp.task('tests:run-all', () => {
 		return gulp
@@ -230,7 +248,7 @@ gulp.task('tests:run-all', () => {
 
 
  /**
- * Tests task - run server tests once.
+ * Tests:spec - run server
  */
 gulp.task('tests:run-server', () => {
 		return gulp
@@ -240,7 +258,7 @@ gulp.task('tests:run-server', () => {
 
 
 /**
- * Tests task - watch server tests.
+ * Tests:spec - watch server
  */
 gulp.task('tests:watch-server', () => {
 		return gulp
@@ -254,7 +272,7 @@ gulp.task('tests:watch-server', () => {
 
 
 /**
- * Tests task - run client-side tests.
+ * Tests:spec - run client
  */
 gulp.task('tests:run-client', () => {
 		return gulp
@@ -264,7 +282,7 @@ gulp.task('tests:run-client', () => {
 
 
 /**
- * Tests task - watch client-side tests
+ * Tests:spec - watch client
  */
 gulp.task('tests:watch-client', () => {
 		return gulp

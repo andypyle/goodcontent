@@ -19,8 +19,9 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// eslint-disable-next-line no-duplicate-imports
 window.$ = _jquery2.default;
-// eslint-disable-next-line import/no-duplicates
+// eslint-disable-next-line no-duplicate-imports
 
 window.jQuery = _jquery2.default;
 

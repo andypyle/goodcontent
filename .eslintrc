@@ -4,14 +4,19 @@
 	"rules": {
 		"linebreak-style": [
 			0,
-			"unix"
+			"unix",
 		],
 		"indent": [
 			1,
-			"tab"
+			"tab",
+		],
+		"no-unused-vars": [
+			"error",
+			{	"argsIgnorePattern": "next" },
 		],
 		"no-tabs": [0],
 		"import/no-unresolved": [0],
+		"import/no-duplicates": [0],
 		"no-console": [0],
 		"no-param-reassign": [0],
 		"no-alert": [0],
@@ -19,5 +24,5 @@
 	},
 	"env": {
 		"browser": true,
-	}
+	},
 }
